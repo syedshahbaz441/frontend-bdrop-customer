@@ -17,24 +17,11 @@ describe('App', () => {
     expect(app).toBeTruthy();
   });
 
-  it('should render the admin app shell', async () => {
+  it('should render the customer app shell', async () => {
     const fixture = TestBed.createComponent(App);
     await fixture.whenStable();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.brand')?.textContent).toContain('BuddyDrop');
-    expect(compiled.textContent).toContain('Keep the drop moving.');
-  });
-
-  it('should switch between admin views', async () => {
-    const fixture = TestBed.createComponent(App);
-    await fixture.whenStable();
-    const compiled = fixture.nativeElement as HTMLElement;
-    const catalogueButton = compiled.querySelectorAll<HTMLButtonElement>('.nav-item')[1];
-
-    catalogueButton.click();
-    fixture.detectChanges();
-
-    expect(compiled.querySelector('.catalogue-view')).toBeTruthy();
-    expect(compiled.querySelector('.users-view')).toBeNull();
+    expect(compiled.querySelector('header')?.textContent).toContain('BuddyDrop');
+    expect(compiled.textContent).toContain('Order now');
   });
 });
