@@ -14,11 +14,12 @@ describe('App', () => {
     expect(app).toBeTruthy();
   });
 
-  it('should render title', async () => {
+  it('should render the customer app shell', async () => {
     const fixture = TestBed.createComponent(App);
     await fixture.whenStable();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Good morning, operator.');
+    expect(compiled.querySelector('header')?.textContent).toContain('BuddyDrop');
+    expect(compiled.textContent).toContain('Book a service');
   });
 
   it('should switch between admin views', async () => {

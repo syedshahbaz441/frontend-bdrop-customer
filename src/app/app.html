@@ -1,4 +1,4 @@
-<main class="admin-shell">
+<main class="app-shell">
   <aside class="sidebar">
     <div class="brand"><span class="brand-mark">B</span><div><strong>BuddyDrop</strong><small>Operations desk</small></div></div>
     <nav>
@@ -6,7 +6,11 @@
       <button class="nav-item" [class.active]="activeView() === 'catalogue'" type="button" (click)="showView('catalogue')"><span>02</span>Catalogue</button>
       <button class="nav-item" [class.active]="activeView() === 'users'" type="button" (click)="showView('users')"><span>03</span>Customers</button>
     </nav>
-    <div class="sidebar-footer"><span class="status-dot"></span><div><strong>{{ backendStatus() }}</strong><small>{{ backendDetails() }}</small></div></div>
+
+    <div class="sidebar-card">
+      <span>Need a quick pickup?</span>
+      <a routerLink="/book" class="secondary-btn">Order now</a>
+    </div>
   </aside>
 
   <section class="workspace">

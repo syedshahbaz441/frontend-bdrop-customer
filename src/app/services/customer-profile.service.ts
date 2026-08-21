@@ -7,13 +7,17 @@ import { environment } from '../../environments/environment';
 export interface CustomerProfile {
   id: number;
   firstName: string;
+  lastName: string;
   email: string;
+  phone: string;
   city: string;
 }
 
 export interface CustomerProfileUpdateRequest {
   firstName: string;
+  lastName: string;
   email: string;
+  phone: string;
   city: string;
 }
 
