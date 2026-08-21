@@ -24,7 +24,7 @@ npm install
 npm start
 ```
 
-Open `http://localhost:4300/` in a browser. The Angular development server reloads the application when source files change.
+Open `http://localhost:4200/` in a browser. The Angular development server reloads the application when source files change.
 
 > **Important:** If this checkout contains merge-conflict markers such as `<<<<<<< HEAD`, resolve them before running `npm install`, building, or committing. The conflict must be resolved consistently for the admin application; do not leave customer-only services or template bindings in the admin branch unless they are intentionally required.
 
@@ -51,7 +51,7 @@ The API base URL is defined in `src/environments/environment.ts`. Update the env
 
 | Command | Purpose |
 | --- | --- |
-| `npm start` | Start the development server on port 4300 |
+| `npm start` | Start the development server on port 4200 |
 | `npm run build` | Create a production build in `dist/` |
 | `npm run watch` | Continuously build with the development configuration |
 | `npm test -- --watch=false` | Run the Vitest suite once |
