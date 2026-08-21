@@ -6,7 +6,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "buddy-drop": {
+    "buddy-drop-admin": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -54,14 +54,14 @@
           "builder": "@angular/build:dev-server",
           "options": {
             "proxyConfig": "proxy.conf.json",
-            "port": 4300
+            "port": 4200
           },
           "configurations": {
             "production": {
-              "buildTarget": "buddy-drop:build:production"
+              "buildTarget": "buddy-drop-admin:build:production"
             },
             "development": {
-              "buildTarget": "buddy-drop:build:development"
+              "buildTarget": "buddy-drop-admin:build:development"
             }
           },
           "defaultConfiguration": "development"
