@@ -1,10 +1,13 @@
 import { TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
+
 import { App } from './app';
 
 describe('App', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [App],
+      providers: [provideRouter([])],
     }).compileComponents();
   });
 
@@ -14,12 +17,12 @@ describe('App', () => {
     expect(app).toBeTruthy();
   });
 
-  it('should render the customer app shell', async () => {
+  it('should render the admin app shell', async () => {
     const fixture = TestBed.createComponent(App);
     await fixture.whenStable();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('header')?.textContent).toContain('BuddyDrop');
-    expect(compiled.textContent).toContain('Book a service');
+    expect(compiled.querySelector('.brand')?.textContent).toContain('BuddyDrop');
+    expect(compiled.textContent).toContain('Keep the drop moving.');
   });
 
   it('should switch between admin views', async () => {

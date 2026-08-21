@@ -1,9 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { RouterLink, RouterOutlet } from '@angular/router';
+
+import { AdminProduct, AdminProductService } from './services/admin-product.service';
+import { AdminUser, AdminUserService } from './services/admin-user.service';
+import { HealthService } from './services/health.service';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RouterLink],
+  imports: [FormsModule, RouterOutlet, RouterLink],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
