@@ -1,0 +1,176 @@
+.customer-app {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 20px 64px;
+  font-family: Inter, system-ui, sans-serif;
+  color: #1f2937;
+}
+
+.hero-panel {
+  background: linear-gradient(135deg, #fff7ed, #ecfeff);
+  border-radius: 24px;
+  padding: 24px 28px;
+  margin-bottom: 24px;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #f97316;
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.hero-panel h1 {
+  margin: 8px 0 0;
+  font-size: clamp(2rem, 5vw, 3.4rem);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 24px;
+}
+
+.order-form,
+.status-panel,
+.orders-panel {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.05);
+}
+
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.service-option {
+  border: 1px solid #e5e7eb;
+  background: #f8fafc;
+  border-radius: 12px;
+  padding: 12px 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.service-option.selected {
+  background: #111827;
+  color: #fff;
+}
+
+.order-form label {
+  display: block;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+.order-form input {
+  width: 100%;
+  margin-top: 8px;
+  box-sizing: border-box;
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-size: 1rem;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 18px 0;
+  font-size: 1.1rem;
+}
+
+.primary-btn {
+  width: 100%;
+  border: none;
+  background: linear-gradient(135deg, #f97316, #fb7185);
+  color: white;
+  font-weight: 700;
+  border-radius: 12px;
+  padding: 14px 16px;
+  cursor: pointer;
+}
+
+.status-panel h2,
+.orders-panel h2,
+.order-form h2 {
+  margin-top: 0;
+}
+
+.active-card {
+  background: #fff7ed;
+  border-radius: 16px;
+  padding: 18px;
+}
+
+.service-name {
+  margin: 0 0 6px;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.meta-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 8px 12px;
+  margin: 16px 0;
+}
+
+.progress-bar {
+  height: 10px;
+  background: #fed7aa;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress-bar span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #f97316, #facc15);
+}
+
+.orders-panel {
+  margin-top: 24px;
+}
+
+.orders-list {
+  display: grid;
+  gap: 14px;
+}
+
+.order-card {
+  display: grid;
+  grid-template-columns: 1.2fr 1.8fr auto;
+  gap: 12px;
+  align-items: center;
+  padding: 16px 18px;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+}
+
+.amount {
+  font-weight: 800;
+  color: #111827;
+}
+
+@media (max-width: 800px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .service-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .order-card {
+    grid-template-columns: 1fr;
+  }
+}
