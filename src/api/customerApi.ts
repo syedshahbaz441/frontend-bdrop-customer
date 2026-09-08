@@ -54,7 +54,7 @@ function getAuthHeaders(): Record<string, string> {
 }
 
 export async function loginCustomer(payload: LoginRequest): Promise<LoginResponse> {
-  const response = await fetch(`${API_BASE}/auth/login`, {
+  const response = await fetch(`${API_BASE}/customer/login`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload),
