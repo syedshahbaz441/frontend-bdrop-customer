@@ -1,32 +1,70 @@
-# React + TypeScript + Vite
+# BuddyDrop Customer Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A customer-facing React + TypeScript app for booking delivery and drop services through BuddyDrop. The interface lets users:
 
-Currently, two official plugins are available:
+- choose a service type
+- enter pickup and drop-off locations
+- place an order
+- view the active order status
+- review recent orders
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Tech stack
 
-## React Compiler
+- React 19
+- TypeScript
+- Vite
+- Vitest
+- Testing Library
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Project structure
 
-## Expanding the Oxlint configuration
+- `src/App.tsx` — main customer order flow UI
+- `src/api/customerApi.ts` — API calls for customer orders
+- `src/types.ts` — shared types
+- `src/App.css` — styling for the app
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+## Getting started
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+1. Install dependencies:
+
+```bash
+npm install
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+2. Start the app in development mode:
+
+```bash
+npm run dev
+```
+
+3. Build for production:
+
+```bash
+npm run build
+```
+
+4. Run lint checks:
+
+```bash
+npm run lint
+```
+
+## Features
+
+- Service selection cards for food delivery, pickup/drop, and goods transfer
+- Dynamic order summary with total cost
+- Live order panel showing order progress
+- Recent orders history
+- API integration layer for customer order actions
+
+## Notes
+
+This frontend is designed to work with a BuddyDrop backend that exposes customer order endpoints such as:
+
+- fetching recent orders
+- fetching active order
+- creating a new order
+
+## Repository
+
+- GitHub: https://github.com/syedshahbaz441/frontend-bdrop-customer.git
