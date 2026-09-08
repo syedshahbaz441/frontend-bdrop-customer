@@ -1,78 +1,106 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import { render, screen, fireEvent, waitFor } from '@testing-library/react'
+import { render, screen, fireEvent } from '@testing-library/react'
 import App from './App'
 
 describe('Customer app', () => {
   beforeEach(() => {
     vi.stubGlobal(
       'fetch',
-      vi.fn()
-        .mockResolvedValueOnce({
+      vi.fn((input: RequestInfo | URL) => {
+        const url = String(input)
+
+        if (url.includes('/api/health')) {
+          return Promise.resolve({
+            ok: true,
+            json: async () => ({ status: 'ok' }),
+          })
+        }
+
+        if (url.includes('/auth/login')) {
+          return Promise.resolve({
+            ok: true,
+            json: async () => ({
+              token: 'demo-token',
+              user: { id: 7, name: 'Ava Patel', email: 'ava@buddydrop.com' },
+            }),
+          })
+        }
+
+        if (url.includes('/restaurants')) {
+          return Promise.resolve({
+            ok: true,
+            json: async () => [
+              {
+                id: 1,
+                name: 'Urban Bites',
+                location: 'Downtown',
+                categories: ['food', 'pickup'],
+                deliveryFee: 4.5,
+                eta: '18-25 min',
+              },
+              {
+                id: 2,
+                name: 'Green Table',
+                location: 'Midtown',
+                categories: ['food', 'drinks'],
+                deliveryFee: 3.5,
+                eta: '21-30 min',
+              },
+            ],
+          })
+        }
+
+        if (url.includes('/orders')) {
+          return Promise.resolve({
+            ok: true,
+            json: async () => [
+              {
+                id: 1,
+                service: 'Food delivery',
+                status: 'On the way',
+                pickupLocation: 'Riverside Market',
+                dropoffLocation: 'City Hall',
+                orderDate: 'Today',
+                pickupTime: '4:30 PM',
+                estimatedArrival: '5:15 PM',
+                totalAmount: 22.5,
+                progress: 68,
+              },
+            ],
+          })
+        }
+
+        return Promise.resolve({
           ok: true,
-          json: async () => [
-            {
-              id: 1,
-              service: 'Food delivery',
-              status: 'On the way',
-              pickupLocation: 'Riverside Market',
-              dropoffLocation: 'City Hall',
-              orderDate: 'Today',
-              pickupTime: '4:30 PM',
-              estimatedArrival: '5:15 PM',
-              totalAmount: 22.5,
-              progress: 68,
-            },
-          ],
+          json: async () => ({ status: 'ok' }),
         })
-        .mockResolvedValueOnce({
-          ok: true,
-          json: async () => ({
-            id: 1,
-            service: 'Food delivery',
-            status: 'On the way',
-            pickupLocation: 'Riverside Market',
-            dropoffLocation: 'City Hall',
-            orderDate: 'Today',
-            pickupTime: '4:30 PM',
-            estimatedArrival: '5:15 PM',
-            totalAmount: 22.5,
-            progress: 68,
-          }),
-        })
-        .mockResolvedValueOnce({
-          ok: true,
-          json: async () => ({
-            id: 99,
-            service: 'Pickup & drop',
-            status: 'Order placed',
-            pickupLocation: 'Downtown Hub',
-            dropoffLocation: 'Museum',
-            orderDate: '2026-09-10',
-            pickupTime: '10:00 AM',
-            estimatedArrival: 'Awaiting driver',
-            totalAmount: 18,
-            progress: 15,
-          }),
-        }),
+      }),
     )
   })
 
-  it('loads orders and allows a customer to create a booking', async () => {
+  it('logs in and displays only the restaurants and categories available for the selected location', async () => {
     render(<App />)
 
-    expect(await screen.findByText(/food delivery/i)).toBeInTheDocument()
+    fireEvent.change(screen.getByLabelText(/email/i), {
+      target: { value: 'ava@buddydrop.com' },
+    })
+    fireEvent.change(screen.getByLabelText(/password/i), {
+      target: { value: 'demo123' },
+    })
+    fireEvent.change(screen.getByLabelText(/location/i), {
+      target: { value: 'Downtown' },
+    })
+    fireEvent.click(screen.getByRole('button', { name: /sign in/i }))
 
-    fireEvent.click(screen.getByRole('button', { name: /pickup & drop/i }))
-    fireEvent.change(screen.getByLabelText(/pickup location/i), {
-      target: { value: 'Downtown Hub' },
-    })
-    fireEvent.change(screen.getByLabelText(/drop-off location/i), {
-      target: { value: 'Museum' },
-    })
-    fireEvent.click(screen.getByRole('button', { name: /place order/i }))
+    expect(await screen.findByText(/welcome back, ava/i)).toBeInTheDocument()
+    expect(await screen.findByText(/urban bites/i)).toBeInTheDocument()
 
-    await waitFor(() => {
-      expect(screen.getByText(/pickup & drop/i)).toBeInTheDocument()
-    })
+    const foodButton = await screen.findByRole('button', { name: /food delivery/i })
+    const pickupButton = await screen.findByRole('button', { name: /pickup & drop/i })
+    const drinksButton = await screen.findByRole('button', { name: /drinks/i })
+
+    expect(foodButton).not.toBeDisabled()
+    expect(pickupButton).not.toBeDisabled()
+    expect(drinksButton).toBeDisabled()
   })
 })

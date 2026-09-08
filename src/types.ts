@@ -1,4 +1,13 @@
-export type CustomerServiceType = 'food' | 'pickup' | 'drop';
+export type CustomerServiceType = 'food' | 'pickup' | 'drop' | 'drinks';
+
+export interface RestaurantLocation {
+  id: number;
+  name: string;
+  location: string;
+  categories: CustomerServiceType[];
+  deliveryFee: number;
+  eta: string;
+}
 
 export interface CustomerOrderRequest {
   service: string;
